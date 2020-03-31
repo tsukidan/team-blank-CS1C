@@ -2,11 +2,11 @@
 
 ## Group Member Responsibilities:
 
-Be respectful to one another.
+* Be respectful to one another.
 
-Each person is required to complete their share of work
+* Each person is required to complete their share of work
 
-If they are not able to they must let the other team members known in the groupchat
+* If they are not able to they must let the other team members known in the groupchat
 
 ## Coding standards
 
