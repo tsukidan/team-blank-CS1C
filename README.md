@@ -39,16 +39,16 @@ Member information includes:
 A rebate of 2% of the total amount spent (not to include sales tax) is paid at the close of the year to the Executive members. Regular members pay annual dues of $65.00 and Executive members pay annual dues of $120.00. Your program will use the following files that will be provided:
 
 * A membership information file (warehouse shoppers) is provided with the following format:
-Customer name
-Customer membership number
-Type of customer – Regular or Executive
-Membership expiration date
+  * Customer name
+  * Customer membership number
+  * Type of customer – Regular or Executive
+  * Membership expiration date
 
 * Seven sales files are provided with the following format:
-Purchase date
-Customer membership number
-Item purchased
-Sales price quantity purchased
+  * Purchase date
+  * Customer membership number
+  * Item purchased
+  * Sales price quantity purchased
 
 Your program should read from the daily sales file and update the members&#39; information accordingly. As the sales are processed the total amount spent and rebate data for each member should be updated. Use a sales tax rate of 7 3/4% for all revenue totals.
 
