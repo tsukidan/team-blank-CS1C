@@ -63,7 +63,7 @@ Generate the following displays at any time:
 * Your team should provide the capability to create purchases for the new members to validate your software.
 * An administrator should be able to add (with a corresponding price), delete items, and change prices from the inventory list.
 * A store manager should be able to enter an item name and display the quantity of that item sold as well as the total revenue for the item.
-* A store manager should be able to enter a membership number r name and display the total purchases for that member.
+* A store manager should be able to enter a membership number __or__ name and display the total purchases for that member.
 * Your program should be able to determine if any Regular customer should convert their membership to Executive status. Display the number of recommended conversions.
 * An administrator should be able to determine if any Executive customer should convert their membership to Regular status. Display the number of recommended conversions.
 * Your software should require the store manager and administrator to logon to obtain access to your program.
