@@ -18,10 +18,14 @@ Your team is to write a program that supports the Bulk Club.   At least one clas
 The team must follow the Scrum process (the Scrum master must log all team meetings and the product owner must document the backlog).
 
 Sprint schedule:
+
 Schedule:
-First checkpoint – April 13th\
-Second checkpoint – April 27th
-Final checkpoint – May 11th
+
+* **First checkpoint – April 13th**
+
+* **Second checkpoint – April 27th**
+
+* **Final checkpoint – May 11th**
 
 Bulk Club has two types of members: Regular and Executive
 Member information includes:
