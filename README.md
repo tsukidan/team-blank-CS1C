@@ -1,5 +1,13 @@
 # Bulk Club Class Project
 
+## Group Member Responsibilities:
+
+Be respectful to one another.
+
+Each person is required to complete their share of work
+
+If they are not able to they must let the other team members known in the groupchat
+
 ## Coding standards
 
 Follow [this](https://llvm.org/docs/CodingStandards.html) with some exceptions when necessary
