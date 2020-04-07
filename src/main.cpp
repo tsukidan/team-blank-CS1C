@@ -10,9 +10,12 @@ int main(int argc, char *argv[])
   LoginWindow loginWindow;
   SetupWindow setupWindow;
 
-  if (!setupDB() && existingAdmin()) {
+  if (!setupDB() && existingAdmin())
+  {
     loginWindow.show();
-  } else {
+  }
+  else
+  {
     setupWindow.show();
   }
 
