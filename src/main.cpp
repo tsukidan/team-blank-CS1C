@@ -14,22 +14,17 @@ int main(int argc, char *argv[])
 
   if (!setupDB() && existingAdmin())
   {
-    if (loginWindow.exec() == QDialog::Accepted)
+    if (loginWindow.exec() == QDialog::Rejected)
     {
-      successful = true;
+      return 0;
     }
   }
   else
   {
-    if (setupWindow.exec() == QDialog::Accepted)
+    if (setupWindow.exec() == QDialog::Rejected)
     {
-      successful = true;
+      return 0;
     }
-  }
-
-  if (!successful)
-  {
-    return 0;
   }
 
   mainWindow.show();
