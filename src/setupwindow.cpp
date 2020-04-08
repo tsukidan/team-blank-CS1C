@@ -43,5 +43,5 @@ void SetupWindow::on_createButton_clicked()
 
   user = admin;
 
-  close();
+  accept();
 }
