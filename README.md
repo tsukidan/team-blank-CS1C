@@ -1,6 +1,6 @@
 # Bulk Club Class Project
 
-## Group Member Responsibilities:
+## Rules
 
 * Be respectful to one another.
 
@@ -10,7 +10,8 @@
 
 ## Coding standards
 
-Follow [this](https://llvm.org/docs/CodingStandards.html) with some exceptions when necessary
+Follow [this](https://llvm.org/docs/CodingStandards.html) with some exceptions when necessary. Although, you must follow the following requirements:
+ * If a class is intended to be used as a QT window, it must be postfixed with `Window`. For exmaple, instead of declaring the login class `Login`, you must declare it `LoginWindow`
 
 ## Spec
 Your team is to write a program that supports the Bulk Club.   At least one class must contain a pointer (a copy constructor needs to be written and tested).   Highlight the above.  Your team is to write at least 10 agile stories (including description, tasks, test scenarios, and story points) before software is developed).  Your team must use an agile management tool (e.g. Waffle.io), Graphical User Interface (GUI) such as QT, DOXYGEN, and GIT.    Only team members should have access to their repository.
