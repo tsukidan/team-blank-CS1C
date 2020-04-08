@@ -1,7 +1,7 @@
 #include "setupwindow.h"
 #include "ui_setupwindow.h"
 
-SetupWindow::SetupWindow(QWidget *parent) : QWidget(parent),
+SetupWindow::SetupWindow(QWidget *parent) : QDialog(parent),
                                             ui(new Ui::SetupWindow)
 {
   ui->setupUi(this);
@@ -30,7 +30,8 @@ void SetupWindow::on_createButton_clicked()
   }
 
   User admin(username, password, true);
-  if (!admin.save()) {
+  if (!admin.save())
+  {
     QMessageBox::warning(this, "Setup", "Couldn't save admin");
     return;
   }

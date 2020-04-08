@@ -2,7 +2,7 @@
 #define SETUPWINDOW_H
 
 #include <QMessageBox>
-#include <QWidget>
+#include <QDialog>
 #include "user.h"
 
 namespace Ui
@@ -10,7 +10,7 @@ namespace Ui
 class SetupWindow;
 }
 
-class SetupWindow : public QWidget
+class SetupWindow : public QDialog
 {
   Q_OBJECT
 
