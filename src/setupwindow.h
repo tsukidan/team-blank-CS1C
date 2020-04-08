@@ -18,11 +18,14 @@ public:
   explicit SetupWindow(QWidget *parent = nullptr);
   ~SetupWindow();
 
+  User getUser();
+
 private slots:
   void on_createButton_clicked();
 
 private:
   Ui::SetupWindow *ui;
+  User user;
 };
 
 #endif // SETUPWINDOW_H

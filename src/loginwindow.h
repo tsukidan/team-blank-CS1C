@@ -18,11 +18,14 @@ public:
   explicit LoginWindow(QWidget *parent = nullptr);
   ~LoginWindow();
 
+  User getUser();
+
 private slots:
   void on_loginButton_clicked();
 
 private:
   Ui::LoginWindow *ui;
+  User user;
 };
 
 #endif // LOGINWINDOW_H

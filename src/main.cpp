@@ -9,8 +9,8 @@ int main(int argc, char *argv[])
   QApplication a(argc, argv);
   LoginWindow loginWindow;
   SetupWindow setupWindow;
-  MainWindow mainWindow;
   bool successful = false;
+  User user;
 
   if (!setupDB() && existingAdmin())
   {
@@ -18,6 +18,7 @@ int main(int argc, char *argv[])
     {
       return 0;
     }
+    user = loginWindow.getUser();
   }
   else
   {
@@ -25,7 +26,10 @@ int main(int argc, char *argv[])
     {
       return 0;
     }
+    user = setupWindow.getUser();
   }
+
+  MainWindow mainWindow(user);
 
   mainWindow.show();
   return a.exec();

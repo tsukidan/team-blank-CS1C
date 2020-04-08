@@ -12,6 +12,11 @@ SetupWindow::~SetupWindow()
   delete ui;
 }
 
+User SetupWindow::getUser()
+{
+  return user;
+}
+
 void SetupWindow::on_createButton_clicked()
 {
   QString username = ui->usernameLineEdit->text();
@@ -35,6 +40,8 @@ void SetupWindow::on_createButton_clicked()
     QMessageBox::warning(this, "Setup", "Couldn't save admin");
     return;
   }
+
+  user = admin;
 
   close();
 }

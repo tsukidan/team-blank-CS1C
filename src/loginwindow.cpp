@@ -9,6 +9,11 @@ LoginWindow::LoginWindow(QWidget *parent)
 
 LoginWindow::~LoginWindow() { delete ui; }
 
+User LoginWindow::getUser()
+{
+  return user;
+}
+
 void LoginWindow::on_loginButton_clicked()
 {
   User user;
@@ -17,6 +22,7 @@ void LoginWindow::on_loginButton_clicked()
 
   if (User::findByUsername(user, username) && user.getUsername() == username)
   {
+    this->user = user;
     accept();
     return;
   }
