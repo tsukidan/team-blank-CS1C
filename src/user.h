@@ -12,11 +12,18 @@ public:
   };
 
   static bool setupTable(QSqlQuery &query);
+  static bool findByUsername(User &user, QString username);
 
   User();
   User(QString username, QString password, bool admin);
+  User(QSqlQuery &query);
 
   bool save();
+
+  int getId() const;
+  QString getUsername() const;
+  QString getPassword() const;
+  bool isAdmin() const;
 
 private:
   int id;
