@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>LoginWindow</class>
- <widget class="QWidget" name="LoginWindow">
+ <widget class="QDialog" name="LoginWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -15,7 +15,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-    <widget class="QWidget" name="" native="true">
+    <widget class="QWidget" name="widget" native="true">
      <property name="minimumSize">
       <size>
        <width>175</width>
@@ -23,6 +23,18 @@
       </size>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
+      <item alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <pointsize>16</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Login</string>
+        </property>
+       </widget>
+      </item>
       <item>
        <widget class="QLineEdit" name="usernameLineEdit">
         <property name="placeholderText">
@@ -44,6 +56,9 @@
        <widget class="QPushButton" name="loginButton">
         <property name="text">
          <string>Login</string>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
         </property>
        </widget>
       </item>

@@ -9,15 +9,29 @@ int main(int argc, char *argv[])
   QApplication a(argc, argv);
   LoginWindow loginWindow;
   SetupWindow setupWindow;
+  MainWindow mainWindow;
+  bool successful = false;
 
   if (!setupDB() && existingAdmin())
   {
-    loginWindow.show();
+    if (loginWindow.exec() == QDialog::Accepted)
+    {
+      successful = true;
+    }
   }
   else
   {
-    setupWindow.show();
+    if (setupWindow.exec() == QDialog::Accepted)
+    {
+      successful = true;
+    }
   }
 
-  return QApplication::exec();
+  if (!successful)
+  {
+    return 0;
+  }
+
+  mainWindow.show();
+  return a.exec();
 }
