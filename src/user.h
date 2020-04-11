@@ -6,8 +6,6 @@
 
 class User {
 public:
-  class ExistingUsername {};
-
   static bool setupTable(QSqlQuery &query);
   static bool findByUsername(User &user, QString username);
 

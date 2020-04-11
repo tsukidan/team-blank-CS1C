@@ -55,19 +55,6 @@ User::User(QSqlQuery &query) {
 bool User::save() {
   QSqlQuery query;
 
-  query.prepare("SELECT id FROM users WHERE username=?");
-  query.addBindValue(username);
-
-  if (!query.exec()) {
-    qDebug() << "Failed to verify unique username: "
-             << query.lastError().text();
-    return false;
-  }
-
-  if (query.next() && query.value(0).toInt() != id) {
-    throw ExistingUsername();
-  }
-
   if (id != -1) {
     query.prepare("UPDATE users"
                   "SET username=?, password=?, admin=?"
