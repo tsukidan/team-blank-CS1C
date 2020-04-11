@@ -4,12 +4,9 @@
 #include <QString>
 #include <QtSql>
 
-class User
-{
+class User {
 public:
-  class ExistingUsername
-  {
-  };
+  class ExistingUsername {};
 
   static bool setupTable(QSqlQuery &query);
   static bool findByUsername(User &user, QString username);

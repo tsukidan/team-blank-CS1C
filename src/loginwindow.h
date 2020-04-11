@@ -1,17 +1,16 @@
 #ifndef LOGINWINDOW_H
 #define LOGINWINDOW_H
 
-#include "user.h"
 #include <QDialog>
 #include <QMessageBox>
 
-namespace Ui
-{
+#include "user.h"
+
+namespace Ui {
 class LoginWindow;
 }
 
-class LoginWindow : public QDialog
-{
+class LoginWindow : public QDialog {
   Q_OBJECT
 
 public:

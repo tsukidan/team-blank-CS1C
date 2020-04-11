@@ -1,36 +1,30 @@
 #include "user.h"
 
-bool User::setupTable(QSqlQuery &query)
-{
+bool User::setupTable(QSqlQuery &query) {
   query.prepare("CREATE TABLE users ("
                 "  id INTEGER PRIMARY KEY AUTOINCREMENT,"
                 "  username TEXT NOT NULL,"
                 "  password TEXT NOT NULL,"
                 "  admin BOOLEAN"
                 ")");
-  if (!query.exec())
-  {
+  if (!query.exec()) {
     qDebug() << "Failed to create users table: " << query.lastError().text();
     return false;
   }
   return true;
 }
 
-bool User::findByUsername(User &user, QString username)
-{
+bool User::findByUsername(User &user, QString username) {
   QSqlQuery query;
   query.prepare("SELECT * FROM users WHERE username=?");
   query.addBindValue(username);
 
-  if (!query.exec())
-  {
-    qDebug() << "Failed to find user by username: "
-             << query.lastError().text();
+  if (!query.exec()) {
+    qDebug() << "Failed to find user by username: " << query.lastError().text();
     return false;
   }
 
-  if (!query.next())
-  {
+  if (!query.next()) {
     return false;
   }
 
@@ -39,8 +33,7 @@ bool User::findByUsername(User &user, QString username)
   return true;
 }
 
-User::User()
-{
+User::User() {
   id = -1;
   username = "";
   password = "";
@@ -48,47 +41,39 @@ User::User()
 }
 
 User::User(QString username, QString password, bool admin)
-    : username(username), password(password), admin(admin)
-{
+    : username(username), password(password), admin(admin) {
   id = -1;
 }
 
-User::User(QSqlQuery &query)
-{
+User::User(QSqlQuery &query) {
   id = query.value(0).toInt();
   username = query.value(1).toString();
   password = query.value(2).toString();
   admin = query.value(3).toBool();
 }
 
-bool User::save()
-{
+bool User::save() {
   QSqlQuery query;
 
   query.prepare("SELECT id FROM users WHERE username=?");
   query.addBindValue(username);
 
-  if (!query.exec())
-  {
+  if (!query.exec()) {
     qDebug() << "Failed to verify unique username: "
              << query.lastError().text();
     return false;
   }
 
-  if (query.next() && query.value(0).toInt() != id)
-  {
+  if (query.next() && query.value(0).toInt() != id) {
     throw ExistingUsername();
   }
 
-  if (id != -1)
-  {
+  if (id != -1) {
     query.prepare("UPDATE users"
                   "SET username=?, password=?, admin=?"
                   "WHERE id=?");
     query.bindValue(3, id);
-  }
-  else
-  {
+  } else {
     query.prepare("INSERT INTO users (username, password, admin)"
                   "VALUES (?, ?, ?)");
   }
@@ -97,8 +82,7 @@ bool User::save()
   query.addBindValue(password);
   query.addBindValue(admin);
 
-  if (!query.exec())
-  {
+  if (!query.exec()) {
     qDebug() << "Failed to save user: " << query.lastError().text();
     return false;
   }
@@ -107,19 +91,7 @@ bool User::save()
   return true;
 }
 
-int User::getId() const
-{
-  return id;
-}
-QString User::getUsername() const
-{
-  return username;
-}
-QString User::getPassword() const
-{
-  return password;
-}
-bool User::isAdmin() const
-{
-  return admin;
-}
+int User::getId() const { return id; }
+QString User::getUsername() const { return username; }
+QString User::getPassword() const { return password; }
+bool User::isAdmin() const { return admin; }

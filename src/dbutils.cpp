@@ -1,12 +1,10 @@
 #include "dbutils.h"
 
-bool setupDB()
-{
+bool setupDB() {
   QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
   db.setDatabaseName("storage.db");
 
-  if (!db.open())
-  {
+  if (!db.open()) {
     qDebug() << "Can't Connect to DB!";
     return false;
   }
@@ -17,22 +15,19 @@ bool setupDB()
   query.prepare(
       "SELECT name FROM sqlite_master WHERE type='table' AND name='users'");
 
-  if (!query.exec())
-  {
+  if (!query.exec()) {
     qDebug() << "Failed to check if customers table exists: "
              << query.lastError().text();
     return false;
   }
 
   // If we get a result then we know the customers table exists
-  if (query.next())
-  {
+  if (query.next()) {
     qDebug() << "Database already setup";
     return false;
   }
 
-  if (!User::setupTable(query))
-  {
+  if (!User::setupTable(query)) {
     return false;
   }
 
@@ -40,15 +35,13 @@ bool setupDB()
   return true;
 }
 
-bool existingAdmin()
-{
+bool existingAdmin() {
   QSqlQuery query;
 
   // Check to see if the customers table already exists
   query.prepare("SELECT id FROM users WHERE admin=1");
 
-  if (!query.exec())
-  {
+  if (!query.exec()) {
     qDebug() << "Failed to search for existing admin: "
              << query.lastError().text();
     return false;
