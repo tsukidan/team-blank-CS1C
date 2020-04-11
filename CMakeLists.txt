@@ -28,6 +28,14 @@ add_executable(P2
   src/user.cpp
   src/dbutils.h
   src/dbutils.cpp
+  src/member.h
+  src/member.cpp
+  src/memberlisttab.cpp
+  src/memberlisttab.h
+  src/memberlisttab.ui
+  src/membersmodel.h
+  src/membersmodel.cpp
+  src/seedData.h
 )
 
 target_link_libraries(P2 PRIVATE Qt5::Widgets Qt5::Sql)

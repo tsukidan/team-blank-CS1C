@@ -30,6 +30,10 @@ bool setupDB() {
   if (!User::setupTable(query)) {
     return false;
   }
+  if (!Member::setupTable(query)) {
+    return false;
+  }
+  Member::seedDB();
 
   qDebug() << "Set up database";
   return true;

@@ -3,6 +3,7 @@
 
 #include <QtSql>
 
+#include "member.h"
 #include "user.h"
 
 bool setupDB();

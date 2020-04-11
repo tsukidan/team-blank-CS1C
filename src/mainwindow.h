@@ -1,7 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "memberlisttab.h"
 #include <QMainWindow>
+
 
 #include "user.h"
 

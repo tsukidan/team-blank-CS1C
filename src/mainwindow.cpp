@@ -4,8 +4,10 @@
 
 MainWindow::MainWindow(User const &user, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
+  MemberListTab *memberListTab = new MemberListTab;
+
   ui->setupUi(this);
-  ui->label->setText("Hello " + user.getUsername());
+  ui->tabWidget->insertTab(0, memberListTab, "Members");
 }
 
 MainWindow::~MainWindow() { delete ui; }
