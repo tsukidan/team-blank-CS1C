@@ -16,7 +16,7 @@ void LoginWindow::on_loginButton_clicked() {
   QString username = ui->usernameLineEdit->text();
   QString password = ui->passwordLineEdit->text();
 
-  if (User::findByUsername(user, username) && user.getUsername() == username) {
+  if (User::findByUsername(user, username) && user.getPassword() == password) {
     this->user = user;
     accept();
     return;
