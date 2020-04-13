@@ -35,6 +35,13 @@ add_executable(P2
   src/memberlisttab.ui
   src/membersmodel.h
   src/membersmodel.cpp
+  src/item.h
+  src/item.cpp
+  src/purchase.h
+  src/purchase.cpp
+  src/dayprocessortab.cpp
+  src/dayprocessortab.h
+  src/dayprocessortab.ui
   src/seedData.h
 )
 

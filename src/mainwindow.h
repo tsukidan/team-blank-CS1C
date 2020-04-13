@@ -1,11 +1,10 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "dayprocessortab.h"
 #include "memberlisttab.h"
-#include <QMainWindow>
-
-
 #include "user.h"
+#include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

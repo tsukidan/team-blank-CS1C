@@ -34,6 +34,12 @@ bool setupDB() {
     return false;
   }
   Member::seedDB();
+  if (!Item::setupTable(query)) {
+    return false;
+  }
+  if (!Purchase::setupTable(query)) {
+    return false;
+  }
 
   qDebug() << "Set up database";
   return true;

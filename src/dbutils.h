@@ -1,10 +1,12 @@
 #ifndef DBSETUP_H
 #define DBSETUP_H
 
+#include "item.h"
+#include "member.h"
+#include "purchase.h"
+#include "user.h"
 #include <QtSql>
 
-#include "member.h"
-#include "user.h"
 
 bool setupDB();
 bool existingAdmin();
