@@ -21,6 +21,10 @@ private slots:
 
     void on_filterMonthCheckbox_stateChanged(int arg1);
 
+    void on_addUserButton_clicked();
+
+    void on_deleteUserButton_clicked();
+
 private:
   Ui::MemberListTab *ui;
   MembersModel *membersModel;

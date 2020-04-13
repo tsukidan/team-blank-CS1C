@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>349</width>
     <height>315</height>
    </rect>
   </property>
@@ -32,6 +32,20 @@
     <widget class="QTableView" name="memberTable">
      <property name="editTriggers">
       <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="addUserButton">
+     <property name="text">
+      <string>Add User</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="deleteUserButton">
+     <property name="text">
+      <string>Delete User</string>
      </property>
     </widget>
    </item>
