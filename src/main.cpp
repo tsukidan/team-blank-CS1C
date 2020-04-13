@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
     }
     user = setupWindow.getUser();
   }
-
+    //test comment
   MainWindow mainWindow(user);
 
   mainWindow.show();
