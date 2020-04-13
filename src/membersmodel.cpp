@@ -1,5 +1,9 @@
 #include "membersmodel.h"
 
+/**
+ * @brief MembersModel::MembersModel
+ * @param parent
+ */
 MembersModel::MembersModel(QObject *parent) : QSqlTableModel(parent) {
   setTable("members");
   select();
@@ -8,6 +12,16 @@ MembersModel::MembersModel(QObject *parent) : QSqlTableModel(parent) {
   setHeaderData(2, Qt::Horizontal, tr("Type"));
   setHeaderData(3, Qt::Horizontal, tr("Expiration"));
   setHeaderData(4, Qt::Horizontal, tr("Rebate"));
+}
+
+/**
+ * @brief MembersModel::filterByMonth
+ * @param date
+ */
+void MembersModel::filterByMonth(QDate date)
+{
+    QString dateString = date.toString("yyyy-MM-dd");
+    setFilter(QString("expiration = '%1'").arg(dateString));
 }
 
 QVariant MembersModel::data(const QModelIndex &index, int role) const {
@@ -21,4 +35,9 @@ QVariant MembersModel::data(const QModelIndex &index, int role) const {
     }
   }
   return QSqlTableModel::data(index, role);
+}
+
+void MembersModel::clearFilterByMonth()
+{
+    setFilter("");
 }

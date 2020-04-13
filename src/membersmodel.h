@@ -3,6 +3,7 @@
 
 #include <QLocale>
 #include <QSqlTableModel>
+#include <QDate>
 
 
 class MembersModel : public QSqlTableModel {
@@ -11,6 +12,10 @@ public:
 
   virtual QVariant data(const QModelIndex &index,
                         int role = Qt::DisplayRole) const override;
+
+  void filterByMonth(QDate date);
+
+  void clearFilterByMonth();
 };
 
 #endif // MEMBERSMODEL_H

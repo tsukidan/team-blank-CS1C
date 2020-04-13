@@ -7,13 +7,27 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>315</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QCheckBox" name="filterMonthCheckbox">
+     <property name="text">
+      <string>Filter by Month:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDateEdit" name="filterMonth">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
    <item>
     <widget class="QTableView" name="memberTable">
      <property name="editTriggers">
