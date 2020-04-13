@@ -49,9 +49,14 @@ Item::Item(QSqlQuery &query) {
 bool Item::save() {
   QSqlQuery query;
 
-  query.prepare("REPLACE INTO items (id, name, price)"
-                "VALUES (?, ?, ?)");
-  query.addBindValue(id);
+  if (id == -1) {
+    query.prepare("INSERT INTO items (name, price)"
+                  "VALUES (?, ?)");
+  } else {
+    query.prepare("REPLACE INTO items (id, name, price)"
+                  "VALUES (?, ?, ?)");
+    query.addBindValue(id);
+  }
   query.addBindValue(name);
   query.addBindValue(price);
 
