@@ -43,6 +43,11 @@ add_executable(P2
   src/dayprocessortab.h
   src/dayprocessortab.ui
   src/seedData.h
+  src/inventorylisttab.cpp
+  src/inventorylisttab.ui
+  src/inventorylisttab.h
+  src/inventorymodel.cpp
+  src/inventorymodel.h
   src/dayprocessing.cpp
   src/dayprocessing.h
 )
