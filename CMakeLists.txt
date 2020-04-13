@@ -43,6 +43,8 @@ add_executable(P2
   src/dayprocessortab.h
   src/dayprocessortab.ui
   src/seedData.h
+  src/dayprocessing.cpp
+  src/dayprocessing.h
 )
 
 target_link_libraries(P2 PRIVATE Qt5::Widgets Qt5::Sql)

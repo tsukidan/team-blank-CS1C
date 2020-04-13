@@ -116,7 +116,15 @@ const Purchase DAY7[DAY7_SIZE] = {
     {QDate(2020, 18, 3), 61616, "Brocolli", 3.99, 50},
 };
 
-// const Purchase *DAYS[DAYS_SIZE] = {DAY1, DAY2, DAY3, DAY4, DAY5, DAY6, DAY7};
+static const int DAYS_SIZE = 7;
+static const int DAY_SIZES[DAYS_SIZE] = {
+    SeedData::DAY1_SIZE, SeedData::DAY2_SIZE, SeedData::DAY3_SIZE,
+    SeedData::DAY4_SIZE, SeedData::DAY5_SIZE, SeedData::DAY6_SIZE,
+    SeedData::DAY7_SIZE,
+};
+static const SeedData::Purchase *DAYS[DAYS_SIZE] = {
+    SeedData::DAY1, SeedData::DAY2, SeedData::DAY3, SeedData::DAY4,
+    SeedData::DAY5, SeedData::DAY6, SeedData::DAY7};
 
 const int MEMERS_SIZE = 15;
 const Member MEMBERS[MEMERS_SIZE] = {
