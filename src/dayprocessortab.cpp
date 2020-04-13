@@ -15,7 +15,7 @@ void DayProcessorTab::processCurrentDay() {
     Item item;
 
     if (!Item::findByName(item, seedPurchase.itemName)) {
-      item = Item(seedPurchase.itemName, seedPurchase.price);
+      item = Item(seedPurchase.itemName, seedPurchase.price * 100);
       item.save();
     }
 
