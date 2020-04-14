@@ -108,7 +108,7 @@ const Purchase DAY6[DAY6_SIZE] = {
     {QDate(2020, 17, 3), 12345, "Propel Fitness Water", 12.50, 3},
 };
 
-const int DAY7_SIZE = 7;
+const int DAY7_SIZE = 4;
 const Purchase DAY7[DAY7_SIZE] = {
     {QDate(2020, 18, 3), 77777, "Oatmeal", 5.59, 33},
     {QDate(2020, 18, 3), 12345, "T-bone Steak", 19.95, 55},
