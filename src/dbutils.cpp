@@ -40,9 +40,7 @@ bool setupDB() {
   if (!Purchase::setupTable(query)) {
     return false;
   }
-  if (!DayProcessing::setup(query)) {
-    return false;
-  }
+  DayProcessing::setup(query);
 
   qDebug() << "Set up database";
   return true;

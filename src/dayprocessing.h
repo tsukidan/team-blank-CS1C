@@ -8,11 +8,7 @@
 #include <QtSql>
 
 namespace DayProcessing {
-bool setup(QSqlQuery &query);
-int currentDay();
-bool incrementCurrentDay();
-void processDay(int day);
-void processCurrentDay();
+void setup(QSqlQuery &query);
 }; // namespace DayProcessing
 
 #endif // DAYPROCESSING_H
