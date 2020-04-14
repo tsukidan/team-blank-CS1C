@@ -10,8 +10,9 @@ InventoryModel::InventoryModel(QObject *parent) : QSqlTableModel(parent) {
 
 QVariant InventoryModel::data(const QModelIndex &index, int role) const {
   if (role == Qt::DisplayRole && index.column() == 2) {
-    return QString("$") +
-           QString::number(QSqlTableModel::data(index).toInt() / 100.0, 'f', 2);
+    int price = QSqlTableModel::data(index).toInt();
+
+    return QString("$") + QString::number(price / 100.0, 'f', 2);
   }
   return QSqlTableModel::data(index, role);
 }
