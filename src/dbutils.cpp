@@ -30,6 +30,7 @@ bool setupDB() {
   if (!User::setupTable(query)) {
     return false;
   }
+  User::seedDB();
   if (!Member::setupTable(query)) {
     return false;
   }

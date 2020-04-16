@@ -7,6 +7,7 @@
 class User {
 public:
   static bool setupTable(QSqlQuery &query);
+  static void seedDB();
   static bool findByUsername(User &user, QString username);
 
   User();

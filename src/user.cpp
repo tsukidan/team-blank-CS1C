@@ -14,6 +14,11 @@ bool User::setupTable(QSqlQuery &query) {
   return true;
 }
 
+void User::seedDB() {
+  User storeManager("store manager", "password", false);
+  storeManager.save();
+}
+
 bool User::findByUsername(User &user, QString username) {
   QSqlQuery query;
   query.prepare("SELECT * FROM users WHERE username=?");
@@ -52,8 +57,7 @@ User::User(QSqlQuery &query) {
   admin = query.value(3).toBool();
 }
 
-bool User::save()
-{
+bool User::save() {
   QSqlQuery query;
 
   if (id != -1) {
@@ -61,9 +65,7 @@ bool User::save()
                   "SET username=?, password=?, admin=?"
                   "WHERE id=?");
     query.bindValue(3, id);
-  }
-  else
-  {
+  } else {
     query.prepare("INSERT INTO users (username, password, admin)"
                   "VALUES (?, ?, ?)");
   }
@@ -72,8 +74,7 @@ bool User::save()
   query.addBindValue(password);
   query.addBindValue(admin);
 
-  if (!query.exec())
-  {
+  if (!query.exec()) {
     qDebug() << "Failed to save user: " << query.lastError().text();
     return false;
   }
