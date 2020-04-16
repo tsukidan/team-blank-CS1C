@@ -3,7 +3,7 @@
 
 MainWindow::MainWindow(User const &user, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
-  MemberListTab *memberListTab = new MemberListTab;
+  MemberListTab *memberListTab = new MemberListTab(user);
   InventoryListTab *inventoryListTab = new InventoryListTab;
 
   ui->setupUi(this);
