@@ -19,16 +19,18 @@ MemberListTab::MemberListTab(const User &user, QWidget *parent)
 
 MemberListTab::~MemberListTab() { delete ui; }
 
-void MemberListTab::on_filterMonth_userDateChanged(const QDate &date) {
-  membersModel->filterByMonth(date);
-}
+// void MemberListTab::on_filterMonth_userDateChanged(const QDate &date) {
+//   membersModel->filterByMonth(date);
+// }
 
 void MemberListTab::on_filterMonthCheckbox_stateChanged(int checked) {
   if (checked == 0) {
-    ui->filterMonth->setEnabled(false);
+    ui->yearSpinBox->setEnabled(false);
+    ui->monthComboBox->setEnabled(false);
     membersModel->clearFilterByMonth();
   } else {
-    ui->filterMonth->setEnabled(true);
+    ui->yearSpinBox->setEnabled(true);
+    ui->monthComboBox->setEnabled(true);
   }
 }
 
