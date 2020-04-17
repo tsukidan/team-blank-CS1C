@@ -1,25 +1,78 @@
 #include "inventorymodel.h"
 #include <QDebug>
 
+QString InventoryModel::moneyDisplay(int cents) {
+  return QString("$") + QString::number(cents / 100.0, 'f', 2);
+}
+
 InventoryModel::InventoryModel(QObject *parent) : QSqlTableModel(parent) {
+  QSqlQuery query;
+  query.prepare("SELECT "
+                "    items.id,"
+                "    SUM(purchases.quantity),"
+                "    SUM(purchases.quantity) * items.price AS revenue "
+                "FROM items "
+                "LEFT JOIN purchases ON purchases.item_id = items.id "
+                "GROUP BY items.id");
+  if (!query.exec()) {
+    qDebug() << "Failed to search for quantity sold and revenue: "
+             << query.lastError().text();
+    return;
+  }
+
   setTable("items");
   select();
+  while (query.next()) {
+    int id = query.value(0).toInt();
+    sold.insert(id, query.value(1).toInt());
+    revenue.insert(id, query.value(2).toInt());
+  }
+
   setHeaderData(0, Qt::Horizontal, tr("ID"));
   setHeaderData(1, Qt::Horizontal, tr("Name"));
   setHeaderData(2, Qt::Horizontal, tr("Price"));
+  setHeaderData(3, Qt::Horizontal, tr("Sold"));
+  setHeaderData(4, Qt::Horizontal, tr("Total revenue"));
+}
+
+Qt::ItemFlags InventoryModel::flags(const QModelIndex &index) const {
+  if (index.column() == 3 || index.column() == 4) {
+    return Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemNeverHasChildren;
+  }
+  return QSqlTableModel::flags(index);
+}
+
+int InventoryModel::columnCount(const QModelIndex &parent) const {
+  return QSqlTableModel::columnCount(parent) + 2;
 }
 
 QVariant InventoryModel::data(const QModelIndex &index, int role) const {
-  if (index.column() == 2) {
+  switch (index.column()) {
+  case 2: {
     int price = QSqlTableModel::data(index).toInt();
+
     switch (role) {
     case (Qt::DisplayRole):
-      return QString("$") + QString::number(price / 100.0, 'f', 2);
-      break;
+      return moneyDisplay(price);
     case Qt::EditRole:
       return price / 100.0;
-      break;
     }
+
+    break;
+  }
+  case 3:
+  case 4: {
+    int id = QSqlTableModel::record(index.row()).value(0).toInt();
+
+    if (role == Qt::DisplayRole) {
+      if (index.column() == 3) {
+        return sold[id];
+      } else {
+        return moneyDisplay(revenue[id]);
+      }
+    }
+    break;
+  }
   }
   return QSqlTableModel::data(index, role);
 }
