@@ -18,10 +18,9 @@ MembersModel::MembersModel(QObject *parent) : QSqlTableModel(parent) {
  * @brief MembersModel::filterByMonth
  * @param date
  */
-void MembersModel::filterByMonth(QDate date)
-{
-    QString dateString = date.toString("yyyy-MM-dd");
-    setFilter(QString("expiration = '%1'").arg(dateString));
+void MembersModel::filterByMonth(QDate date) {
+  QString dateString = date.toString("yyyy-MM-dd");
+  setFilter(QString("expiration = '%1'").arg(dateString));
 }
 
 QVariant MembersModel::data(const QModelIndex &index, int role) const {
@@ -30,14 +29,10 @@ QVariant MembersModel::data(const QModelIndex &index, int role) const {
     case 2:
       return QSqlTableModel::data(index).toBool() ? "Executive" : "Regular";
     case 4:
-      // TODO: Display this correctly
-      return QString("$") + QSqlTableModel::data(index).toString();
+      return Utils::moneyDisplay(QSqlTableModel::data(index).toInt());
     }
   }
   return QSqlTableModel::data(index, role);
 }
 
-void MembersModel::clearFilterByMonth()
-{
-    setFilter("");
-}
+void MembersModel::clearFilterByMonth() { setFilter(""); }

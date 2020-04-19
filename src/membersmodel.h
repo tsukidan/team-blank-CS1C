@@ -1,10 +1,10 @@
 #ifndef MEMBERSMODEL_H
 #define MEMBERSMODEL_H
 
+#include "utils.h"
+#include <QDate>
 #include <QLocale>
 #include <QSqlTableModel>
-#include <QDate>
-
 
 class MembersModel : public QSqlTableModel {
 public:
