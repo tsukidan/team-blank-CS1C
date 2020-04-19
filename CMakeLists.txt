@@ -47,6 +47,8 @@ add_executable(P2
   src/inventorymodel.h
   src/dayprocessing.cpp
   src/dayprocessing.h
+  src/utils.cpp
+  src/utils.h
 )
 
 target_link_libraries(P2 PRIVATE Qt5::Widgets Qt5::Sql)

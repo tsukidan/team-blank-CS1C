@@ -1,9 +1,4 @@
 #include "inventorymodel.h"
-#include <QDebug>
-
-QString InventoryModel::moneyDisplay(int cents) {
-  return QString("$") + QString::number(cents / 100.0, 'f', 2);
-}
 
 InventoryModel::InventoryModel(QObject *parent) : QSqlTableModel(parent) {
   QSqlQuery query;
@@ -53,7 +48,7 @@ QVariant InventoryModel::data(const QModelIndex &index, int role) const {
 
     switch (role) {
     case (Qt::DisplayRole):
-      return moneyDisplay(price);
+      return Utils::moneyDisplay(price);
     case Qt::EditRole:
       return price / 100.0;
     }
@@ -68,7 +63,7 @@ QVariant InventoryModel::data(const QModelIndex &index, int role) const {
       if (index.column() == 3) {
         return sold[id];
       } else {
-        return moneyDisplay(revenue[id]);
+        return Utils::moneyDisplay(revenue[id]);
       }
     }
     break;

@@ -1,7 +1,9 @@
 #ifndef INVENTORYMODEL_H
 #define INVENTORYMODEL_H
 
+#include "utils.h"
 #include <QDate>
+#include <QDebug>
 #include <QHash>
 #include <QSqlError>
 #include <QSqlQuery>
@@ -20,8 +22,6 @@ public:
                        int role = Qt::EditRole) override;
 
 private:
-  static QString moneyDisplay(int cents);
-
   QHash<int, int> sold;
   QHash<int, int> revenue;
 };
