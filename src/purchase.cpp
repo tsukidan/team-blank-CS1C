@@ -30,9 +30,14 @@ Purchase::Purchase(int memberId, int itemId, int quantity)
 bool Purchase::save() {
   QSqlQuery query;
 
-  query.prepare("REPLACE INTO purchases (id, member_id, item_id, quantity)"
-                "VALUES (?, ?, ?, ?)");
-  query.addBindValue(id);
+  if (id == -1) {
+    query.prepare("INSERT INTO purchases (member_id, item_id, quantity)"
+                  "VALUES (?, ?, ?)");
+  } else {
+    query.prepare("REPLACE INTO purchases (id, member_id, item_id, quantity)"
+                  "VALUES (?, ?, ?, ?)");
+    query.addBindValue(id);
+  }
   query.addBindValue(memberId);
   query.addBindValue(itemId);
   query.addBindValue(quantity);
