@@ -37,7 +37,4 @@ QVariant MembersModel::data(const QModelIndex &index, int role) const {
   return QSqlTableModel::data(index, role);
 }
 
-void MembersModel::clearFilterByMonth()
-{
-    setFilter("");
-}
+void MembersModel::clearFilterByMonth(){ setFilter(""); }
