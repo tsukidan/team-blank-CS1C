@@ -49,6 +49,9 @@ add_executable(P2
   src/dayprocessing.h
   src/utils.cpp
   src/utils.h
+  src/createitemdialog.h
+  src/createitemdialog.ui
+  src/createitemdialog.cpp
 )
 
 target_link_libraries(P2 PRIVATE Qt5::Widgets Qt5::Sql)
