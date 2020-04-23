@@ -1,6 +1,23 @@
 #include "inventorymodel.h"
 
 InventoryModel::InventoryModel(QObject *parent) : QSqlTableModel(parent) {
+  selectExtra();
+  setTable("items");
+  select();
+
+  setHeaderData(0, Qt::Horizontal, tr("ID"));
+  setHeaderData(1, Qt::Horizontal, tr("Name"));
+  setHeaderData(2, Qt::Horizontal, tr("Price"));
+  setHeaderData(3, Qt::Horizontal, tr("Sold"));
+  setHeaderData(4, Qt::Horizontal, tr("Total revenue"));
+}
+
+void InventoryModel::refresh() {
+  select();
+  selectExtra();
+}
+
+void InventoryModel::selectExtra() {
   QSqlQuery query;
   query.prepare("SELECT "
                 "    items.id,"
@@ -15,19 +32,11 @@ InventoryModel::InventoryModel(QObject *parent) : QSqlTableModel(parent) {
     return;
   }
 
-  setTable("items");
-  select();
   while (query.next()) {
     int id = query.value(0).toInt();
     sold.insert(id, query.value(1).toInt());
     revenue.insert(id, query.value(2).toInt());
   }
-
-  setHeaderData(0, Qt::Horizontal, tr("ID"));
-  setHeaderData(1, Qt::Horizontal, tr("Name"));
-  setHeaderData(2, Qt::Horizontal, tr("Price"));
-  setHeaderData(3, Qt::Horizontal, tr("Sold"));
-  setHeaderData(4, Qt::Horizontal, tr("Total revenue"));
 }
 
 Qt::ItemFlags InventoryModel::flags(const QModelIndex &index) const {
