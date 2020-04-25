@@ -89,5 +89,21 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>CreateItemDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>247</x>
+     <y>227</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>109</x>
+     <y>174</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
 </ui>
