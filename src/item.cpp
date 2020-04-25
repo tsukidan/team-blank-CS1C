@@ -72,3 +72,7 @@ bool Item::save() {
 int Item::getId() const { return id; }
 QString Item::getName() const { return name; }
 int Item::getPrice() const { return price; }
+
+void Item::setId(int id) { this->id = id; }
+void Item::setName(QString name) { this->name = name; }
+void Item::setPrice(int price) { this->price = price; }

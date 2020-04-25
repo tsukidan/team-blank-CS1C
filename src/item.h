@@ -20,6 +20,10 @@ public:
   QString getName() const;
   int getPrice() const;
 
+  void setId(int id);
+  void setName(QString name);
+  void setPrice(int price);
+
 private:
   int id;
   QString name;
