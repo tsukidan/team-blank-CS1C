@@ -27,3 +27,16 @@ void InventoryListTab::on_addItemButton_clicked() {
     inventoryModel->refresh();
   }
 }
+
+void InventoryListTab::on_deleteItemButton_clicked() {
+  QItemSelectionModel *selection = ui->itemTable->selectionModel();
+
+  QSqlDatabase::database().transaction();
+  for (QModelIndex index : selection->selectedRows()) {
+    int id = inventoryModel->data(index, Qt::EditRole).toInt();
+
+    Item::deleteById(id);
+  }
+  QSqlDatabase::database().commit();
+  inventoryModel->refresh();
+}

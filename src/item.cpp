@@ -32,6 +32,19 @@ bool Item::findByName(Item &item, QString name) {
   return true;
 }
 
+bool Item::deleteById(int id) {
+  QSqlQuery query;
+  query.prepare("DELETE FROM items WHERE id=?");
+  query.addBindValue(id);
+
+  if (!query.exec()) {
+    qDebug() << "Failed to delete item by id: " << query.lastError().text();
+    return false;
+  }
+
+  return true;
+}
+
 Item::Item() {
   id = -1;
   name = "";
@@ -67,6 +80,13 @@ bool Item::save() {
 
   id = query.lastInsertId().toInt();
   return true;
+}
+
+bool Item::remove() {
+  if (id == -1) {
+    qDebug() << "Error: Trying to delete item that isn't in the database";
+  }
+  return deleteById(id);
 }
 
 int Item::getId() const { return id; }

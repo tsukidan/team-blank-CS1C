@@ -15,14 +15,32 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QTableView" name="itemTable"/>
-   </item>
-   <item>
-    <widget class="QPushButton" name="addItemButton">
-     <property name="text">
-      <string>Add Item</string>
+    <widget class="QTableView" name="itemTable">
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <property name="sortingEnabled">
+      <bool>false</bool>
      </property>
     </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="deleteItemButton">
+       <property name="text">
+        <string>Delete Item(s)</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="addItemButton">
+       <property name="text">
+        <string>Add Item</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>

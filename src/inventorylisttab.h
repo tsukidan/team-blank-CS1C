@@ -23,6 +23,8 @@ public:
 private slots:
   void on_addItemButton_clicked();
 
+  void on_deleteItemButton_clicked();
+
 private:
   Ui::InventoryListTab *ui;
   InventoryModel *inventoryModel;
