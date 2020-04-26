@@ -66,6 +66,20 @@ bool Member::save() {
   return true;
 }
 
+bool Member::deleteById(int id) {
+  QSqlQuery query;
+  query.prepare("DELETE FROM items WHERE id=?");
+  query.addBindValue(id);
+
+  if (!query.exec()) {
+    qDebug() << "Failed to delete item by id: " << query.lastError().text();
+    return false;
+  }
+
+  return true;
+}
+
+
 int Member::getId() const { return id; }
 QString Member::getName() const { return name; }
 bool Member::isExecutive() const { return executive; }

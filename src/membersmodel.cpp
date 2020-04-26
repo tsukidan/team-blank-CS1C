@@ -1,33 +1,10 @@
 #include "membersmodel.h"
 #include <QDebug>
-
 /**
  * @brief MembersModel::MembersModel
  * @param parent
  */
 MembersModel::MembersModel(QObject *parent) : QSqlTableModel(parent) {
-  QSqlQuery query;
-  query.prepare("SELECT "
-                "    members.id,"
-                "    SUM(purchases.quantity * items.price) AS revenue "
-                "FROM purchases "
-                "INNER JOIN members ON members.id = purchases.member_id "
-                "INNER JOIN items ON items.id = purchases.item_id "
-                "GROUP BY members.id");
-  if (!query.exec()) {
-    qDebug() << "Failed to search for quantity sold and revenue: "
-             << query.lastError().text();
-    return;
-  }
-
-  while (query.next()) {
-    int id = query.value(0).toInt();
-    int revenueFromMember = query.value(1).toInt();
-    if (revenueFromMember != 0) {
-      revenue.insert(id, revenueFromMember);
-    }
-  }
-
   setTable("members");
   select();
 
@@ -37,6 +14,31 @@ MembersModel::MembersModel(QObject *parent) : QSqlTableModel(parent) {
   setHeaderData(3, Qt::Horizontal, tr("Expiration"));
   setHeaderData(4, Qt::Horizontal, tr("Rebate"));
   setHeaderData(5, Qt::Horizontal, tr("Revenue"));
+}
+
+void MembersModel::selectExtra()
+{
+    QSqlQuery query;
+    query.prepare("SELECT "
+                  "    members.id,"
+                  "    SUM(purchases.quantity * items.price) AS revenue "
+                  "FROM purchases "
+                  "INNER JOIN members ON members.id = purchases.member_id "
+                  "INNER JOIN items ON items.id = purchases.item_id "
+                  "GROUP BY members.id");
+    if (!query.exec()) {
+      qDebug() << "Failed to search for quantity sold and revenue: "
+               << query.lastError().text();
+      return;
+    }
+
+    while (query.next()) {
+      int id = query.value(0).toInt();
+      int revenueFromMember = query.value(1).toInt();
+      if (revenueFromMember != 0) {
+        revenue.insert(id, revenueFromMember);
+      }
+    }
 }
 
 /**
@@ -73,6 +75,12 @@ QVariant MembersModel::data(const QModelIndex &index, int role) const {
     }
   }
   return QSqlTableModel::data(index, role);
+}
+
+void MembersModel::memberRefresh()
+{
+    select();
+    selectExtra();
 }
 
 void MembersModel::clearFilterByMonth() { setFilter(""); }
