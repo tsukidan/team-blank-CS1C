@@ -20,6 +20,8 @@ public:
 
   void clearFilterByMonth();
 
+  void memberRefresh();
+  void selectExtra();
 private:
   QHash<int, int> revenue;
 };

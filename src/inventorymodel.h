@@ -14,7 +14,7 @@ class InventoryModel : public QSqlTableModel {
 public:
   InventoryModel(QObject *parent = nullptr);
 
-  void InventoryModel::refresh();
+  void refresh();
 
   virtual Qt::ItemFlags flags(const QModelIndex &index) const override;
   virtual QVariant data(const QModelIndex &index,
@@ -24,7 +24,7 @@ public:
                        int role = Qt::EditRole) override;
 
 private:
-  void InventoryModel::selectExtra();
+  void selectExtra();
 
   QHash<int, int> sold;
   QHash<int, int> revenue;

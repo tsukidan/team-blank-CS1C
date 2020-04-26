@@ -1,5 +1,6 @@
 #include "memberlisttab.h"
 #include "ui_memberlisttab.h"
+#include "member.h"
 #include <QMessageBox>
 
 MemberListTab::MemberListTab(const User &user, QWidget *parent)
@@ -16,6 +17,8 @@ MemberListTab::MemberListTab(const User &user, QWidget *parent)
     ui->deleteUserButton->hide();
   }
 }
+
+void MemberListTab::reload() {membersModel->select();}
 
 MemberListTab::~MemberListTab() { delete ui; }
 
@@ -40,9 +43,16 @@ void MemberListTab::on_addUserButton_clicked() {
   addMsgBox.exec();
 }
 
-void MemberListTab::on_deleteUserButton_clicked() {
-  QMessageBox deleteMsgBox;
-  deleteMsgBox.setText("TODO: Delte user functionality\n"
-                       "Add in a way to delete highlighted items?");
-  deleteMsgBox.exec();
+void MemberListTab::on_deleteUserButton_clicked()
+{
+  QItemSelectionModel *selection = ui->memberTable->selectionModel();
+
+  QSqlDatabase::database().transaction();
+  for (QModelIndex index : selection->selectedRows()) {
+    int id = membersModel->data(index, Qt::EditRole).toInt();
+
+    Member::deleteById(id);
+  }
+  QSqlDatabase::database().commit();
+  membersModel->memberRefresh();
 }
