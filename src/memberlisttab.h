@@ -26,6 +26,8 @@ private slots:
 
   void on_deleteUserButton_clicked();
 
+  void reload();
+
 private:
   Ui::MemberListTab *ui;
   MembersModel *membersModel;

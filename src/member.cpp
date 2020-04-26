@@ -68,7 +68,7 @@ bool Member::save() {
 
 bool Member::deleteById(int id) {
   QSqlQuery query;
-  query.prepare("DELETE FROM items WHERE id=?");
+  query.prepare("DELETE FROM members WHERE id=?");
   query.addBindValue(id);
 
   if (!query.exec()) {

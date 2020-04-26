@@ -18,6 +18,8 @@ MemberListTab::MemberListTab(const User &user, QWidget *parent)
   }
 }
 
+void MemberListTab::reload() {membersModel->select();}
+
 MemberListTab::~MemberListTab() { delete ui; }
 
 // void MemberListTab::on_filterMonth_userDateChanged(const QDate &date) {
@@ -41,7 +43,8 @@ void MemberListTab::on_addUserButton_clicked() {
   addMsgBox.exec();
 }
 
-void MemberListTab::on_deleteUserButton_clicked() {
+void MemberListTab::on_deleteUserButton_clicked()
+{
   QItemSelectionModel *selection = ui->memberTable->selectionModel();
 
   QSqlDatabase::database().transaction();

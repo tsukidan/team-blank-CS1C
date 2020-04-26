@@ -5,6 +5,7 @@
  * @param parent
  */
 MembersModel::MembersModel(QObject *parent) : QSqlTableModel(parent) {
+  selectExtra();
   setTable("members");
   select();
 
@@ -15,7 +16,11 @@ MembersModel::MembersModel(QObject *parent) : QSqlTableModel(parent) {
   setHeaderData(4, Qt::Horizontal, tr("Rebate"));
   setHeaderData(5, Qt::Horizontal, tr("Revenue"));
 }
-
+void MembersModel::memberRefresh()
+{
+    select();
+    selectExtra();
+}
 void MembersModel::selectExtra()
 {
     QSqlQuery query;
@@ -77,10 +82,6 @@ QVariant MembersModel::data(const QModelIndex &index, int role) const {
   return QSqlTableModel::data(index, role);
 }
 
-void MembersModel::memberRefresh()
-{
-    select();
-    selectExtra();
-}
+
 
 void MembersModel::clearFilterByMonth() { setFilter(""); }
