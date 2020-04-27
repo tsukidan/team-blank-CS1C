@@ -28,6 +28,8 @@ private slots:
 
   void reload();
 
+  void on_monthComboBox_highlighted(int index);
+
 private:
   Ui::MemberListTab *ui;
   MembersModel *membersModel;

@@ -22,10 +22,6 @@ void MemberListTab::reload() {membersModel->select();}
 
 MemberListTab::~MemberListTab() { delete ui; }
 
-// void MemberListTab::on_filterMonth_userDateChanged(const QDate &date) {
-//   membersModel->filterByMonth(date);
-// }
-
 void MemberListTab::on_filterMonthCheckbox_stateChanged(int checked) {
   if (checked == 0) {
     ui->yearSpinBox->setEnabled(false);
@@ -38,9 +34,8 @@ void MemberListTab::on_filterMonthCheckbox_stateChanged(int checked) {
 }
 
 void MemberListTab::on_addUserButton_clicked() {
-  QMessageBox addMsgBox;
-  addMsgBox.setText("TODO: Add user functionality");
-  addMsgBox.exec();
+
+
 }
 
 void MemberListTab::on_deleteUserButton_clicked()
@@ -55,4 +50,9 @@ void MemberListTab::on_deleteUserButton_clicked()
   }
   QSqlDatabase::database().commit();
   membersModel->memberRefresh();
+}
+
+void MemberListTab::on_monthComboBox_highlighted(int index)
+{
+    int id = ui->monthComboBox->currentIndex();
 }
