@@ -26,6 +26,8 @@ private slots:
 
   void on_deleteUserButton_clicked();
 
+  void updateTotalRevenue();
+
   void reload();
 
   void on_monthComboBox_highlighted(int index);

@@ -1,10 +1,11 @@
 #include "memberlisttab.h"
-#include "ui_memberlisttab.h"
 #include "member.h"
+#include "ui_memberlisttab.h"
 #include <QMessageBox>
 
 MemberListTab::MemberListTab(const User &user, QWidget *parent)
     : QWidget(parent), ui(new Ui::MemberListTab) {
+
   ui->setupUi(this);
 
   membersModel = new MembersModel(parent);
@@ -16,9 +17,36 @@ MemberListTab::MemberListTab(const User &user, QWidget *parent)
     ui->addUserButton->hide();
     ui->deleteUserButton->hide();
   }
+  updateTotalRevenue();
 }
 
-void MemberListTab::reload() {membersModel->select();}
+void MemberListTab::updateTotalRevenue() {
+  QSqlQuery query;
+
+  query.prepare("SELECT "
+                "    SUM(purchases.quantity * items.price) AS revenue "
+                "FROM purchases "
+                "INNER JOIN items ON items.id = purchases.item_id");
+  if (!query.exec()) {
+    qDebug() << "Failed to compute the grand total revenue: "
+             << query.lastError().text();
+    return;
+  }
+  int totalRevenue;
+
+  if (!query.next()) {
+    qDebug() << "No purchases found";
+    return;
+  }
+  totalRevenue = query.value(0).toInt();
+  ui->totalRevenue->setText(QString("Grand total revenue: %1")
+                                .arg(Utils::moneyDisplay(totalRevenue)));
+}
+
+void MemberListTab::reload() {
+  updateTotalRevenue();
+  membersModel->select();
+}
 
 MemberListTab::~MemberListTab() { delete ui; }
 
@@ -33,13 +61,9 @@ void MemberListTab::on_filterMonthCheckbox_stateChanged(int checked) {
   }
 }
 
-void MemberListTab::on_addUserButton_clicked() {
+void MemberListTab::on_addUserButton_clicked() {}
 
-
-}
-
-void MemberListTab::on_deleteUserButton_clicked()
-{
+void MemberListTab::on_deleteUserButton_clicked() {
   QItemSelectionModel *selection = ui->memberTable->selectionModel();
 
   QSqlDatabase::database().transaction();
@@ -52,7 +76,6 @@ void MemberListTab::on_deleteUserButton_clicked()
   membersModel->memberRefresh();
 }
 
-void MemberListTab::on_monthComboBox_highlighted(int index)
-{
-    int id = ui->monthComboBox->currentIndex();
+void MemberListTab::on_monthComboBox_highlighted(int index) {
+  int id = ui->monthComboBox->currentIndex();
 }
