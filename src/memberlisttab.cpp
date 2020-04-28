@@ -76,6 +76,4 @@ void MemberListTab::on_deleteUserButton_clicked() {
   membersModel->memberRefresh();
 }
 
-void MemberListTab::on_monthComboBox_highlighted(int index) {
-  int id = ui->monthComboBox->currentIndex();
-}
+void MemberListTab::on_monthComboBox_activated(int index) {}

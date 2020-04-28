@@ -30,7 +30,7 @@ private slots:
 
   void reload();
 
-  void on_monthComboBox_highlighted(int index);
+  void on_monthComboBox_activated(int index);
 
 private:
   Ui::MemberListTab *ui;

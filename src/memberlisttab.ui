@@ -115,6 +115,13 @@
      </property>
     </widget>
    </item>
+   <item alignment="Qt::AlignRight">
+    <widget class="QLabel" name="totalRevenue">
+     <property name="text">
+      <string>Grand total revenue:</string>
+     </property>
+    </widget>
+   </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <property name="topMargin">

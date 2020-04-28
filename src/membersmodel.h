@@ -16,12 +16,13 @@ public:
                         int role = Qt::DisplayRole) const override;
   virtual int columnCount(const QModelIndex &index) const override;
 
-  void filterByMonth(QDate date);
+  void filterByDate(QDate start, QDate end);
 
   void clearFilterByMonth();
 
   void memberRefresh();
   void selectExtra();
+
 private:
   QHash<int, int> revenue;
 };
