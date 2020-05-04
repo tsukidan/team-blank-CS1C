@@ -143,6 +143,13 @@
      </item>
     </layout>
    </item>
+   <item>
+    <widget class="QPushButton" name="createPurchaseButton">
+     <property name="text">
+      <string>Create Purchase</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <resources/>

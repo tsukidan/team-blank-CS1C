@@ -45,7 +45,7 @@ void MemberListTab::updateTotalRevenue() {
 
 void MemberListTab::reload() {
   updateTotalRevenue();
-  membersModel->select();
+  membersModel->memberRefresh();
 }
 
 MemberListTab::~MemberListTab() { delete ui; }
@@ -77,3 +77,13 @@ void MemberListTab::on_deleteUserButton_clicked() {
 }
 
 void MemberListTab::on_monthComboBox_activated(int index) {}
+
+void MemberListTab::on_createPurchaseButton_clicked() {
+  CreatePurchaseDialog createPurchaseDialog;
+  if (createPurchaseDialog.exec() == QDialog::Accepted) {
+    Purchase purchase = createPurchaseDialog.getPurchase();
+
+    purchase.save();
+    reload();
+  }
+}

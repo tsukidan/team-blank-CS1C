@@ -1,6 +1,7 @@
 #ifndef MEMBERLISTTAB_H
 #define MEMBERLISTTAB_H
 
+#include "createpurchasedialog.h"
 #include "membersmodel.h"
 #include "user.h"
 #include <QWidget>
@@ -31,6 +32,8 @@ private slots:
   void reload();
 
   void on_monthComboBox_activated(int index);
+
+  void on_createPurchaseButton_clicked();
 
 private:
   Ui::MemberListTab *ui;
