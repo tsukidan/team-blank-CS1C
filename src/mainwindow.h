@@ -19,7 +19,12 @@ public:
   MainWindow(User const &user, QWidget *parent = nullptr);
   ~MainWindow();
 
+private slots:
+  void on_tabWidget_currentChanged(int index);
+
 private:
   Ui::MainWindow *ui;
+  MemberListTab *memberListTab;
+  InventoryListTab *inventoryListTab;
 };
 #endif // MAINWINDOW_H

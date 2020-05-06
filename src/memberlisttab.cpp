@@ -43,7 +43,7 @@ void MemberListTab::updateTotalRevenue() {
                                 .arg(Utils::moneyDisplay(totalRevenue)));
 }
 
-void MemberListTab::reload() {
+void MemberListTab::refresh() {
   updateTotalRevenue();
   membersModel->memberRefresh();
 }
@@ -84,6 +84,6 @@ void MemberListTab::on_createPurchaseButton_clicked() {
     Purchase purchase = createPurchaseDialog.getPurchase();
 
     purchase.save();
-    reload();
+    refresh();
   }
 }

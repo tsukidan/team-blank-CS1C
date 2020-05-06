@@ -18,7 +18,7 @@ public:
   explicit InventoryListTab(User const &user, QWidget *parent = nullptr);
   ~InventoryListTab();
 
-  void reload();
+  void refresh();
 
 private slots:
   void on_addItemButton_clicked();

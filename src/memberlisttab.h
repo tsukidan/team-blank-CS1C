@@ -17,6 +17,8 @@ public:
   explicit MemberListTab(const User &user, QWidget *parent = nullptr);
   ~MemberListTab();
 
+  void refresh();
+
 private slots:
 
   // void on_filterMonth_userDateChanged(const QDate &date);
@@ -28,8 +30,6 @@ private slots:
   void on_deleteUserButton_clicked();
 
   void updateTotalRevenue();
-
-  void reload();
 
   void on_monthComboBox_activated(int index);
 

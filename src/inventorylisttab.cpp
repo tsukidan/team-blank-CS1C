@@ -14,7 +14,7 @@ InventoryListTab::InventoryListTab(User const &user, QWidget *parent)
   }
 }
 
-void InventoryListTab::reload() { inventoryModel->select(); }
+void InventoryListTab::refresh() { inventoryModel->refresh(); }
 
 InventoryListTab::~InventoryListTab() { delete ui; }
 

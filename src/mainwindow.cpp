@@ -3,8 +3,8 @@
 
 MainWindow::MainWindow(User const &user, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
-  MemberListTab *memberListTab = new MemberListTab(user);
-  InventoryListTab *inventoryListTab = new InventoryListTab(user);
+  memberListTab = new MemberListTab(user);
+  inventoryListTab = new InventoryListTab(user);
 
   ui->setupUi(this);
   ui->tabWidget->insertTab(0, memberListTab, "Members");
@@ -12,3 +12,14 @@ MainWindow::MainWindow(User const &user, QWidget *parent)
 }
 
 MainWindow::~MainWindow() { delete ui; }
+
+void MainWindow::on_tabWidget_currentChanged(int index) {
+  switch (index) {
+  case 0: {
+    memberListTab->refresh();
+  }
+  case 1: {
+    inventoryListTab->refresh();
+  }
+  }
+}
