@@ -49,5 +49,5 @@ void CreatePurchaseDialog::on_CreatePurchaseDialog_accepted() {
   itemId = ui->itemComboBox->currentData().toInt();
   quantity = ui->quantitySpinBox->value();
 
-  purchase = Purchase(memberId, itemId, quantity);
+  purchase = Purchase(memberId, itemId, QDate::currentDate(), quantity);
 }

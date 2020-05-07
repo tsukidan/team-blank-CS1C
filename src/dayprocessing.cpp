@@ -13,7 +13,7 @@ void DayProcessing::setup(QSqlQuery &query) {
         item.save();
       }
 
-      Purchase purchase(seedPurchase.memberId, item.getId(),
+      Purchase purchase(seedPurchase.memberId, item.getId(), seedPurchase.date,
                         seedPurchase.quantity);
       purchase.save();
     }

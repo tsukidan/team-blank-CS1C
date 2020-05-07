@@ -10,7 +10,7 @@ public:
   static void seedDB();
 
   Purchase();
-  Purchase(int memberId, int itemId, int quantity);
+  Purchase(int memberId, int itemId, QDate date, int quantity);
   Purchase(QSqlQuery &query);
 
   bool save();
@@ -18,12 +18,14 @@ public:
   int getId() const;
   int getMemberId() const;
   int getItemId() const;
+  QDate getDate() const;
   int getQuantity() const;
 
 private:
   int id;
   int memberId;
   int itemId;
+  QDate date;
   int quantity;
 };
 
