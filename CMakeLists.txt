@@ -58,6 +58,9 @@ add_executable(P2
   src/createpurchasedialog.cpp
   src/createpurchasedialog.ui
   src/createpurchasedialog.h
+  src/salesreport.cpp
+  src/salesreport.ui
+  src/salesreport.h
 )
 
 target_link_libraries(P2 PRIVATE Qt5::Widgets Qt5::Sql)
