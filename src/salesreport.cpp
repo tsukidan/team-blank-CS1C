@@ -19,8 +19,8 @@ Salesreport::Salesreport(QWidget *parent)
   double totalRev = 0;
   int qtyBought = 0;
   while (query.next()) {
-    totalRev += query.value(4).toDouble();
-    qtyBought += query.value(3).toInt();
+    totalRev += query.value(3).toDouble();
+    qtyBought += query.value(2).toInt();
   }
 
   model->setQuery(query);
