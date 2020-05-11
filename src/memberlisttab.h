@@ -32,11 +32,15 @@ private slots:
 
   void updateTotalRevenue();
 
-  void on_monthComboBox_activated(int index);
-
   void on_createPurchaseButton_clicked();
 
+  void on_yearSpinBox_valueChanged(int arg1);
+
+  void on_monthComboBox_activated(int index);
+
 private:
+  void updateFilters();
+
   Ui::MemberListTab *ui;
   MembersModel *membersModel;
 };
