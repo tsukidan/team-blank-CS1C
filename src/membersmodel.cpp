@@ -51,9 +51,8 @@ void MembersModel::selectExtra() {
  */
 void MembersModel::filterByDate(QDate start, QDate end) {
   QString startString = start.toString("yyyy-MM-dd");
-  QString endString = end.toString("yyyy-MM-dd");
-
-  setFilter(QString("BETWEEN '$1' AND '$2'").arg(startString).arg(endString));
+  QString endString   = end.toString("yyyy-MM-dd");
+  setFilter(QString("expiration BETWEEN '%1' AND '%2'").arg(startString).arg(endString));
 }
 
 Qt::ItemFlags MembersModel::flags(const QModelIndex &index) const {

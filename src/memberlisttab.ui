@@ -29,10 +29,10 @@
         <bool>false</bool>
        </property>
        <property name="minimum">
-        <number>2018</number>
+        <number>2020</number>
        </property>
        <property name="maximum">
-        <number>2025</number>
+        <number>2022</number>
        </property>
       </widget>
      </item>
