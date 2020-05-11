@@ -15,6 +15,7 @@ MembersModel::MembersModel(QObject *parent) : QSqlTableModel(parent) {
   setHeaderData(3, Qt::Horizontal, tr("Expiration"));
   setHeaderData(4, Qt::Horizontal, tr("Rebate"));
   setHeaderData(5, Qt::Horizontal, tr("Revenue"));
+  setHeaderData(6, Qt::Horizontal, tr("Recommended Conversions"));
 }
 void MembersModel::memberRefresh() {
   select();
@@ -56,14 +57,14 @@ void MembersModel::filterByDate(QDate start, QDate end) {
 }
 
 Qt::ItemFlags MembersModel::flags(const QModelIndex &index) const {
-  if (index.column() == 5) {
+  if (index.column() >= 5 || index.column() <= 7) {
     return Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemNeverHasChildren;
   }
   return QSqlTableModel::flags(index);
 }
 
 int MembersModel::columnCount(const QModelIndex &parent) const {
-  return QSqlTableModel::columnCount(parent) + 1;
+  return QSqlTableModel::columnCount(parent) + 3;
 }
 
 QVariant MembersModel::data(const QModelIndex &index, int role) const {
@@ -71,12 +72,30 @@ QVariant MembersModel::data(const QModelIndex &index, int role) const {
     switch (index.column()) {
     case 2:
       return QSqlTableModel::data(index).toBool() ? "Executive" : "Regular";
-    case 4:
-      return Utils::moneyDisplay(QSqlTableModel::data(index).toInt());
-    case 5:
+    case 4: {
+      int id = QSqlTableModel::record(index.row()).value(0).toInt();
+
+      return Utils::moneyDisplay(revenue[id] * 0.02);
+    }
+    case 5: {
       int id = QSqlTableModel::record(index.row()).value(0).toInt();
 
       return Utils::moneyDisplay(revenue[id]);
+    }
+    case 6: {
+      int id = QSqlTableModel::record(index.row()).value(0).toInt();
+      int isExecutive = QSqlTableModel::record(index.row()).value(2).toBool();
+
+      int rebate = revenue[id] * 0.02;
+
+      if (!isExecutive && rebate > 12000 - 6500) {
+        return "Should Upgrade";
+      } else if (isExecutive && rebate < 12000 - 6500) {
+        return "Should Downgrade";
+      } else {
+        return "Should Stay";
+      }
+    }
     }
   }
   return QSqlTableModel::data(index, role);
