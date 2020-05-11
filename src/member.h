@@ -2,11 +2,11 @@
 #define MEMBER_H
 
 #include <QDate>
+#include <QSqlTableModel>
 #include <QString>
 #include <QtSql>
 #include <iomanip>
 #include <sstream>
-#include <QSqlTableModel>
 
 class Member {
 public:
@@ -15,24 +15,21 @@ public:
   static bool deleteById(int id);
 
   Member();
-  Member(int id, QString name, bool executive, QDate expiration,
-         int rebate = 0);
+  Member(int id, QString name, bool executive, QDate expiration);
   Member(QSqlQuery &query);
 
   bool save();
 
-  int     getId()         const;
-  QString getName()       const;
-  bool    isExecutive()   const;
-  QDate   getExpiration() const;
-  int     getRebate()     const;
+  int getId() const;
+  QString getName() const;
+  bool isExecutive() const;
+  QDate getExpiration() const;
 
 private:
   int id;
   QString name;
   bool executive;
   QDate expiration;
-  int rebate;
 };
 
 #endif // MEMBER_H

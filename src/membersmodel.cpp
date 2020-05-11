@@ -56,14 +56,14 @@ void MembersModel::filterByDate(QDate start, QDate end) {
 }
 
 Qt::ItemFlags MembersModel::flags(const QModelIndex &index) const {
-  if (index.column() == 5) {
+  if (index.column() == 5 || index.column() == 4) {
     return Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemNeverHasChildren;
   }
   return QSqlTableModel::flags(index);
 }
 
 int MembersModel::columnCount(const QModelIndex &parent) const {
-  return QSqlTableModel::columnCount(parent) + 1;
+  return QSqlTableModel::columnCount(parent) + 2;
 }
 
 QVariant MembersModel::data(const QModelIndex &index, int role) const {
@@ -71,8 +71,11 @@ QVariant MembersModel::data(const QModelIndex &index, int role) const {
     switch (index.column()) {
     case 2:
       return QSqlTableModel::data(index).toBool() ? "Executive" : "Regular";
-    case 4:
-      return Utils::moneyDisplay(QSqlTableModel::data(index).toInt());
+    case 4: {
+      int id = QSqlTableModel::record(index.row()).value(0).toInt();
+
+      return Utils::moneyDisplay(revenue[id] * 0.02);
+    }
     case 5:
       int id = QSqlTableModel::record(index.row()).value(0).toInt();
 
