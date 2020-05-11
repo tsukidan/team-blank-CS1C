@@ -72,7 +72,7 @@ QVariant InventoryModel::data(const QModelIndex &index, int role) const {
       if (index.column() == 3) {
         return sold[id];
       } else {
-        return Utils::moneyDisplay(revenue[id]);
+        return Utils::moneyDisplay(revenue[id] * 0.0075);
       }
     }
     break;

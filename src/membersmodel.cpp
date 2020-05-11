@@ -51,8 +51,10 @@ void MembersModel::selectExtra() {
  */
 void MembersModel::filterByDate(QDate start, QDate end) {
   QString startString = start.toString("yyyy-MM-dd");
-  QString endString   = end.toString("yyyy-MM-dd");
-  setFilter(QString("expiration BETWEEN '%1' AND '%2'").arg(startString).arg(endString));
+  QString endString = end.toString("yyyy-MM-dd");
+  setFilter(QString("expiration BETWEEN '%1' AND '%2'")
+                .arg(startString)
+                .arg(endString));
 }
 
 Qt::ItemFlags MembersModel::flags(const QModelIndex &index) const {
@@ -79,7 +81,7 @@ QVariant MembersModel::data(const QModelIndex &index, int role) const {
     case 5: {
       int id = QSqlTableModel::record(index.row()).value(0).toInt();
 
-      return Utils::moneyDisplay(revenue[id]);
+      return Utils::moneyDisplay(revenue[id] * 0.0075);
     }
     case 6: {
       int id = QSqlTableModel::record(index.row()).value(0).toInt();
