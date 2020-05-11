@@ -3,6 +3,7 @@
 
 #include "createpurchasedialog.h"
 #include "membersmodel.h"
+#include "creatememberdialogue.h"
 #include "user.h"
 #include <QWidget>
 

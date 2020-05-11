@@ -61,7 +61,17 @@ void MemberListTab::on_filterMonthCheckbox_stateChanged(int checked) {
   }
 }
 
-void MemberListTab::on_addUserButton_clicked() {}
+void MemberListTab::on_addUserButton_clicked() {
+createMemberdialogue memberWindow;
+  if(memberWindow.exec())
+    {
+        Member member = memberWindow.getMember();
+        member.save();
+        membersModel->memberRefresh();
+    }
+}
+
+void MemberListTab::on_monthComboBox_activated(int index) {}
 
 void MemberListTab::on_deleteUserButton_clicked() {
   QItemSelectionModel *selection = ui->memberTable->selectionModel();
@@ -75,8 +85,6 @@ void MemberListTab::on_deleteUserButton_clicked() {
   QSqlDatabase::database().commit();
   membersModel->memberRefresh();
 }
-
-void MemberListTab::on_monthComboBox_activated(int index) {}
 
 void MemberListTab::on_createPurchaseButton_clicked() {
   CreatePurchaseDialog createPurchaseDialog;

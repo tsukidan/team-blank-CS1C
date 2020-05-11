@@ -19,6 +19,7 @@ void InventoryListTab::refresh() { inventoryModel->refresh(); }
 InventoryListTab::~InventoryListTab() { delete ui; }
 
 void InventoryListTab::on_addItemButton_clicked() {
+
   CreateItemDialog createItemDialog;
 
   if (createItemDialog.exec()) {
