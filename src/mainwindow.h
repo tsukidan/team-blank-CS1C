@@ -4,6 +4,7 @@
 #include "inventorylisttab.h"
 #include "memberlisttab.h"
 #include "user.h"
+#include "salesreport.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
