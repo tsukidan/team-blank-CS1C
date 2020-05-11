@@ -15,8 +15,6 @@ void createMemberdialogue::on_buttonBox_accepted() {
   int memberID = ui->memberIDSpinbox->value();
   QString memberName = ui->nameLineEdit->text();
   QDate expireDate = ui->expireDate->date();
-  int rebate = ui->rebateSpinbox->value();
-  int revenue = ui->revenueSpinBox->value();
   bool execStatus;
 
   if (ui->typeComboBox->currentText() == "Executive") {
@@ -24,5 +22,5 @@ void createMemberdialogue::on_buttonBox_accepted() {
   } else {
     execStatus = false;
   }
-  member = Member(memberID, memberName, execStatus, expireDate, rebate);
+  member = Member(memberID, memberName, execStatus, expireDate);
 }
