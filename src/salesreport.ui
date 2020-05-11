@@ -54,6 +54,9 @@
    </property>
   </widget>
   <widget class="QComboBox" name="memberType">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>230</x>

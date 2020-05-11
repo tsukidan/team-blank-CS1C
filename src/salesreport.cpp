@@ -8,7 +8,7 @@ Salesreport::Salesreport(QWidget *parent)
   QSqlQuery query;
 
   query.prepare(
-      "SELECT items.id, items.name, (items.price/100.0), purchases.quantity, "
+      "SELECT items.name, (items.price/100.0), purchases.quantity, "
       "(purchases.quantity * items.price / 100.0) AS revenue FROM items INNER "
       "JOIN purchases ON purchases.item_id=items.id WHERE purchases.date=?");
   query.addBindValue((ui->dateEdit->date()).toString("yyyy-MM-dd"));
@@ -24,11 +24,10 @@ Salesreport::Salesreport(QWidget *parent)
   }
 
   model->setQuery(query);
-  model->setHeaderData(0, Qt::Horizontal, tr("ID"));
-  model->setHeaderData(1, Qt::Horizontal, tr("Name"));
-  model->setHeaderData(2, Qt::Horizontal, tr("Price"));
-  model->setHeaderData(3, Qt::Horizontal, tr("Quantity"));
-  model->setHeaderData(4, Qt::Horizontal, tr("Revenue"));
+  model->setHeaderData(0, Qt::Horizontal, tr("Name"));
+  model->setHeaderData(1, Qt::Horizontal, tr("Price"));
+  model->setHeaderData(2, Qt::Horizontal, tr("Quantity"));
+  model->setHeaderData(3, Qt::Horizontal, tr("Revenue"));
   ui->salestable->setModel(model);
 
   updateMembers();
@@ -43,7 +42,8 @@ void Salesreport::updateMembers() {
   QSqlQueryModel *model2 = new QSqlQueryModel;
   QSqlQuery query;
   query.prepare(
-      "SELECT DISTINCT members.name, members.executive FROM members INNER JOIN "
+      "SELECT DISTINCT members.id, members.name, members.executive FROM "
+      "members INNER JOIN "
       "purchases ON purchases.member_id=members.id WHERE purchases.date=?");
   query.addBindValue((ui->dateEdit->date()).toString("yyyy-MM-dd"));
   if (!query.exec()) {
@@ -53,11 +53,12 @@ void Salesreport::updateMembers() {
   int numStandard = 0;
   int numExecutive = 0;
   while (query.next()) {
-    (query.value(1) == true ? numExecutive++ : numStandard++);
+    (query.value(2) == true ? numExecutive++ : numStandard++);
   }
   model2->setQuery(query);
-  model2->setHeaderData(0, Qt::Horizontal, tr("Name"));
-  model2->setHeaderData(1, Qt::Horizontal, tr("Executive"));
+  model2->setHeaderData(0, Qt::Horizontal, tr("ID"));
+  model2->setHeaderData(1, Qt::Horizontal, tr("Name"));
+  model2->setHeaderData(2, Qt::Horizontal, tr("Executive"));
   ui->memberList->setModel(model2);
   ui->numStan->setText(QString("%1 Standard Members Shopped").arg(numStandard));
   ui->numExec->setText(
@@ -86,7 +87,7 @@ void Salesreport::on_dateEdit_dateChanged(const QDate &date) {
     return;
   }
   query.prepare(
-      "SELECT items.id, items.name, (items.price/100.0), purchases.quantity, "
+      "SELECT items.name, (items.price/100.0), purchases.quantity, "
       "(purchases.quantity * items.price / 100.0) AS revenue FROM items INNER "
       "JOIN purchases ON purchases.item_id=items.id WHERE purchases.date=?");
   query.addBindValue(date.toString("yyyy-MM-dd"));
@@ -97,16 +98,15 @@ void Salesreport::on_dateEdit_dateChanged(const QDate &date) {
   double totalRev = 0;
   int qtyBought = 0;
   while (query.next()) {
-    totalRev += query.value(4).toDouble();
-    qtyBought += query.value(3).toInt();
+    totalRev += query.value(3).toDouble();
+    qtyBought += query.value(4).toInt();
   }
 
   model->setQuery(query);
-  model->setHeaderData(0, Qt::Horizontal, tr("ID"));
-  model->setHeaderData(1, Qt::Horizontal, tr("Name"));
-  model->setHeaderData(2, Qt::Horizontal, tr("Price"));
-  model->setHeaderData(3, Qt::Horizontal, tr("Quantity"));
-  model->setHeaderData(4, Qt::Horizontal, tr("Revenue"));
+  model->setHeaderData(0, Qt::Horizontal, tr("Name"));
+  model->setHeaderData(1, Qt::Horizontal, tr("Price"));
+  model->setHeaderData(2, Qt::Horizontal, tr("Quantity"));
+  model->setHeaderData(3, Qt::Horizontal, tr("Revenue"));
 
   updateMembers();
 
@@ -121,7 +121,7 @@ void Salesreport::on_memberType_currentIndexChanged(int index) {
   switch (index) {
   case 1:
     query.prepare(
-        "SELECT items.id, items.name, (items.price/100.0), purchases.quantity, "
+        "SELECT items.name, (items.price/100.0), purchases.quantity, "
         "(purchases.quantity * items.price / 100.0) AS revenue FROM items "
         "INNER JOIN members ON purchases.member_id=members.id INNER JOIN "
         "purchases ON purchases.item_id=items.id WHERE purchases.date=? AND "
@@ -129,7 +129,7 @@ void Salesreport::on_memberType_currentIndexChanged(int index) {
     break;
   case 0:
     query.prepare(
-        "SELECT items.id, items.name, (items.price/100.0), purchases.quantity, "
+        "SELECT items.name, (items.price/100.0), purchases.quantity, "
         "(purchases.quantity * items.price / 100.0) AS revenue FROM items "
         "INNER JOIN members ON purchases.member_id=members.id INNER JOIN "
         "purchases ON purchases.item_id=items.id WHERE purchases.date=? AND "
@@ -146,16 +146,15 @@ void Salesreport::on_memberType_currentIndexChanged(int index) {
   double totalRev = 0;
   int qtyBought = 0;
   while (query.next()) {
-    totalRev += query.value(4).toDouble();
-    qtyBought += query.value(3).toInt();
+    totalRev += query.value(3).toDouble();
+    qtyBought += query.value(4).toInt();
   }
 
   model->setQuery(query);
-  model->setHeaderData(0, Qt::Horizontal, tr("ID"));
-  model->setHeaderData(1, Qt::Horizontal, tr("Name"));
-  model->setHeaderData(2, Qt::Horizontal, tr("Price"));
-  model->setHeaderData(3, Qt::Horizontal, tr("Quantity"));
-  model->setHeaderData(4, Qt::Horizontal, tr("Revenue"));
+  model->setHeaderData(0, Qt::Horizontal, tr("Name"));
+  model->setHeaderData(1, Qt::Horizontal, tr("Price"));
+  model->setHeaderData(2, Qt::Horizontal, tr("Quantity"));
+  model->setHeaderData(3, Qt::Horizontal, tr("Revenue"));
 
   ui->salestable->setModel(model);
   ui->revenue->setText(QString("Total Daily Revenue $%1").arg(totalRev));
