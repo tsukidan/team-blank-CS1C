@@ -58,6 +58,9 @@ add_executable(P2
   src/creatememberdialogue.cpp
   src/creatememberdialogue.ui
   src/creatememberdialogue.h
+  src/salesreport.cpp
+  src/salesreport.h
+  src/salesreport.ui
 )
 
 target_link_libraries(P2 PRIVATE Qt5::Widgets Qt5::Sql)
