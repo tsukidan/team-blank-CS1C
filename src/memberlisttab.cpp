@@ -16,6 +16,7 @@ MemberListTab::MemberListTab(const User &user, QWidget *parent)
   if (!user.isAdmin()) {
     ui->addUserButton->hide();
     ui->deleteUserButton->hide();
+    ui->memberTable->hideColumn(6);
   }
   updateTotalRevenue();
 }
