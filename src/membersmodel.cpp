@@ -81,7 +81,7 @@ QVariant MembersModel::data(const QModelIndex &index, int role) const {
     case 5: {
       int id = QSqlTableModel::record(index.row()).value(0).toInt();
 
-      return Utils::moneyDisplay(revenue[id] * 0.0075);
+      return Utils::moneyDisplay(revenue[id] + revenue[id] * 0.075);
     }
     case 6: {
       int id = QSqlTableModel::record(index.row()).value(0).toInt();

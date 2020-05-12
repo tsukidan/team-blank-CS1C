@@ -9,7 +9,9 @@ Salesreport::Salesreport(QWidget *parent)
 
   query.prepare(
       "SELECT items.name, (items.price/100.0), purchases.quantity, "
-      "(purchases.quantity * items.price / 100.0) AS revenue FROM items INNER "
+      "(purchases.quantity * ((items.price + items.price * 0.0775) / 100.0)) "
+      "AS "
+      "revenue FROM items INNER "
       "JOIN purchases ON purchases.item_id=items.id WHERE purchases.date=?");
   query.addBindValue((ui->dateEdit->date()).toString("yyyy-MM-dd"));
   if (!query.exec()) {
@@ -88,7 +90,9 @@ void Salesreport::on_dateEdit_dateChanged(const QDate &date) {
   }
   query.prepare(
       "SELECT items.name, (items.price/100.0), purchases.quantity, "
-      "(purchases.quantity * items.price / 100.0) AS revenue FROM items INNER "
+      "(purchases.quantity * ((items.price + items.price * 0.0775) / 100.0)) "
+      "AS "
+      "revenue FROM items INNER "
       "JOIN purchases ON purchases.item_id=items.id WHERE purchases.date=?");
   query.addBindValue(date.toString("yyyy-MM-dd"));
   if (!query.exec()) {
@@ -122,7 +126,8 @@ void Salesreport::on_memberType_currentIndexChanged(int index) {
   case 1:
     query.prepare(
         "SELECT items.name, (items.price/100.0), purchases.quantity, "
-        "(purchases.quantity * items.price / 100.0) AS revenue FROM items "
+        "(purchases.quantity * ((items.price + items.price * 0.0775) / 100.0)) "
+        "AS revenue FROM items "
         "INNER JOIN members ON purchases.member_id=members.id INNER JOIN "
         "purchases ON purchases.item_id=items.id WHERE purchases.date=? AND "
         "members.executive=false");
@@ -130,7 +135,8 @@ void Salesreport::on_memberType_currentIndexChanged(int index) {
   case 0:
     query.prepare(
         "SELECT items.name, (items.price/100.0), purchases.quantity, "
-        "(purchases.quantity * items.price / 100.0) AS revenue FROM items "
+        "(purchases.quantity * ((items.price + items.price * 0.0775) / 100.0)) "
+        "AS revenue FROM items "
         "INNER JOIN members ON purchases.member_id=members.id INNER JOIN "
         "purchases ON purchases.item_id=items.id WHERE purchases.date=? AND "
         "members.executive=true");

@@ -42,7 +42,7 @@ void MemberListTab::updateTotalRevenue() {
   totalRevenue = query.value(0).toInt();
   ui->totalRevenue->setText(
       QString("Grand total revenue: %1")
-          .arg(Utils::moneyDisplay(totalRevenue * 0.0775)));
+          .arg(Utils::moneyDisplay(totalRevenue + totalRevenue * 0.0775)));
 }
 
 void MemberListTab::refresh() {
