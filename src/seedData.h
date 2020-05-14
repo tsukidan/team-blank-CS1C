@@ -34,7 +34,7 @@ const int DAY2_SIZE = 12;
 const Purchase DAY2[DAY2_SIZE] = {
     {QDate(2020, 3, 13), 61616, "1 gallon milk", 6.49, 66},
     {QDate(2020, 3, 13), 77777, "Wonder Bread", 1.29, 7},
-    {QDate(2020, 3, 13), 77777, "Dozen eggs", 1.5, 29},
+    {QDate(2020, 3, 13), 77777, "1.5 Dozen eggs", 4.0, 29},
     {QDate(2020, 3, 13), 35647, "Hamburger", 7.25, 1},
     {QDate(2020, 3, 13), 31311, "The Bourne Supremacy", 19.95, 4},
     {QDate(2020, 3, 13), 12121, "Toilet Paper", 11.75, 1},
