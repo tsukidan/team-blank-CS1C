@@ -4,6 +4,6 @@
 #include <QString>
 
 namespace Utils {
-QString moneyDisplay(int cents);
+QString moneyDisplay(double cents);
 }
 #endif

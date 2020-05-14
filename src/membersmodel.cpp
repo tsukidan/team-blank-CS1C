@@ -16,6 +16,7 @@ MembersModel::MembersModel(QObject *parent) : QSqlTableModel(parent) {
   setHeaderData(4, Qt::Horizontal, tr("Rebate"));
   setHeaderData(5, Qt::Horizontal, tr("Revenue"));
   setHeaderData(6, Qt::Horizontal, tr("Recommended Conversions"));
+  setHeaderData(7, Qt::Horizontal, tr("Cost"));
 }
 void MembersModel::memberRefresh() {
   select();
@@ -58,14 +59,14 @@ void MembersModel::filterByDate(QDate start, QDate end) {
 }
 
 Qt::ItemFlags MembersModel::flags(const QModelIndex &index) const {
-  if (index.column() >= 5 || index.column() <= 7) {
+  if (index.column() >= 5 || index.column() <= 8) {
     return Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemNeverHasChildren;
   }
   return QSqlTableModel::flags(index);
 }
 
 int MembersModel::columnCount(const QModelIndex &parent) const {
-  return QSqlTableModel::columnCount(parent) + 3;
+  return QSqlTableModel::columnCount(parent) + 4;
 }
 
 QVariant MembersModel::data(const QModelIndex &index, int role) const {
@@ -96,6 +97,11 @@ QVariant MembersModel::data(const QModelIndex &index, int role) const {
       } else {
         return "Should Stay";
       }
+    }
+    case 7: {
+      bool isExecutive = QSqlTableModel::record(index.row()).value(2).toBool();
+
+      return Utils::moneyDisplay(isExecutive ? 12000 : 6500);
     }
     }
   }
